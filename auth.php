@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 require './database.php';
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -15,16 +14,17 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
             $query->store_result();
 
-            if($query->num_rows > 0){
+            if ($query->num_rows > 0) {
                 $query->bind_result($user_id, $pass);
                 $query->fetch();
 
-                if(password_verify($hashed_pass, $pass)){
+                if (password_verify($hashed_pass, $pass)) {
                     session_regenerate_id();
                     $_SESSION['loggedin'] = TRUE;
                     $_SESSION['name'] = $name;
                     $_SESSION['id'] = $user_id;
-                }
+
+                    header('Location: /index.php');
                 }
             }
 
