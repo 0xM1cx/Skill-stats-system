@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $sql_ready = $conn->prepare($sql);
             $sql_ready->bind_param("sss", $name, $email, $hashed_pass);
             $sql_ready->execute();
+            session_start();
             header(
                 "Location: ../index.php"
             );
@@ -25,12 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             );
         }
     } else {
-        $error = "NOT SET";
-        header("Location: ../views/register.php?error=" . urlencode($error) . urlencode($name) . urlencode($email) . urlencode($password) . urlencode($r_pass));
+        header("Location: ../views/register.php");
     }
 } else {
-    $error = "NOT POST";
     header(
-        "Location: ../views/register.php?error=" . urldecode($error)
+        "Location: ../views/register.php"
     );
 }
