@@ -1,0 +1,35 @@
+#login-button {
+    background: linear-gradient(to right, #9181F4, #5038ED);
+    background: -webkit-linear-gradient(to right, #9181F4, #5038ED);
+    background-color: #5038ED;
+    transition: background-color 500ms ease-in;
+}
+#login-button:hover{
+    background: #5038ED;
+}
+#or-text::before, #or-text::after {
+    position: absolute;
+    content: "";
+    width: 14vw;
+    height: 2px;
+    top: 55%;
+    z-index: -5;
+    background-color: rgb(227, 227, 227);
+}
+#or-text::before {
+    right: 105%;
+}
+#or-text::after {
+    left: 100%;
+}
+
+#google-img, #facebook-img {
+    width: 2rem;
+    height: auto;
+}
+#hero {
+    background-image: url('../bg/Rectangle-bg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
