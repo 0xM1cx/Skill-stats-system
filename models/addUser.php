@@ -15,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $sql_ready = $conn->prepare($sql);
             $sql_ready->bind_param("sss", $name, $email, $hashed_pass);
             $sql_ready->execute();
-            session_start();
             header(
                 "Location: ../index.php"
             );
