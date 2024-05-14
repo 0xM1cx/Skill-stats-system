@@ -31,6 +31,7 @@
                 <button id="login-button" class="text-white w-full py-3 rounded-2xl" type="submit">Login Now</button>
             </form>
         </div>
+        <a href="./views/register.php">Register Account</a>
 
         <p class="my-8 relative z-10 bg-white" id="or-text">or</p>
 
