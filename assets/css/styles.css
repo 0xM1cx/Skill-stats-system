@@ -28,7 +28,7 @@
     height: auto;
 }
 #hero {
-    background-image: url('../bg/Rectangle-bg.png');
+    background-image: url('../images/Rectangle-bg.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
