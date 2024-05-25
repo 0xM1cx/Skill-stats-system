@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +10,9 @@
 
     <title>Profile</title>
 </head>
+
 <body>
-    
+
     <div class="main-profile-container flex align-start justify-center min-h-dvh p-6" id="main-profile">
         <div class="flex align-start justify-center" id="profile">
             <div class="bg-white w-4/5 h-4/5 rounded-lg p-12 mt-5">
@@ -21,7 +23,7 @@
                 </div>
                 <div class="mt-8" id="short-description">
                     <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates temporibus, eius aliquid itaque esse aperiam.</p>
-                </div>  
+                </div>
             </div>
         </div>
 
@@ -44,7 +46,7 @@
                             </tr>
                         </tbody>
                     </table>
-                </div> 
+                </div>
             </div>
 
             <div class="bg-white w-min-full h-min-3/5 p-3 rounded-lg" id="feeback">
@@ -67,6 +69,7 @@
     <script>
 
     </script>
-    
+
 </body>
+
 </html>

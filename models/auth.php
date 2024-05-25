@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if ($result->num_rows == 1) {
             if (password_verify($pass, $row['pass'])) {
                 echo "<h1>{$row['pass']}</h1>";
-                header("Location: ../views/dashboard.php");
+                header("Location: ../dashboard.php");
             }
         }
     } else {

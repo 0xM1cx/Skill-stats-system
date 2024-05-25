@@ -29,15 +29,17 @@
                                 <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                                     <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
                                     <form class="mx-1 mx-md-4 needs-validation" novalidate method="POST" action="../models/addUser.php">
-                                        <i class="fas fa-user fa-lg me-3 fa-fw">
-                                            <?php
-                                            if (isset($_GET['error'])) {
-                                                echo $_GET['error'];
-                                            }
+                                        <?php
+                                        if (isset($_GET['error'])) {
+                                        ?>
+                                            <div class="alert alert-warning" role="alert">
+                                                <?php echo $_GET['error']; ?>
+                                            </div>
+                                        <?php
+                                        }
 
-                                            ?>
+                                        ?>
 
-                                        </i>
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="name">Your Name</label>

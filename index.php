@@ -19,6 +19,9 @@
 
         <div class="w-3/5 mt-4">
             <form class="flex flex-col items-center justify-center gap-4" action="./models/auth.php" method="POST">
+                <div class="alert alert-warning" role="alert">
+                    This is a warning alert—check it out!
+                </div>
                 <div class=" py-3 px-5 rounded-2xl bg-violet-50 w-full">
                     <i class="bi-person-bounding-box"></i>
                     <input name="username" class=" px-3 py-1 bg-violet-50 outline-none" type="text" placeholder="Username" required>
@@ -31,7 +34,7 @@
                 <button id="login-button" class="text-white w-full py-3 rounded-2xl" type="submit">Login Now</button>
             </form>
         </div>
-        <a href="./views/register.php">Register Account</a>
+        <a class="mt-3" href="./views/register.php">Register Account</a>
 
         <p class="my-8 relative z-10 bg-white" id="or-text">or</p>
 
@@ -50,6 +53,15 @@
     <div id="hero" class="h-full flex-1">
 
     </div>
+    <script>
+        document.getElementById('login-button').addEventListener('click', function(event) {
+            const usernameInput = document.querySelector('input[name="username"]');
+            if (usernameInput.value === '') {
+                alert('Please enter your username');
+                event.preventDefault(); // prevent form submission
+            }
+        });
+    </script>
 
 </body>
 
