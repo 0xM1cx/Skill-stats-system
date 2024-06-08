@@ -13,9 +13,31 @@ session_start();
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <title>Dashboard</title>
+
+
+    <style>
+        .alert-overlay {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+            width: auto;
+        }
+    </style>
 </head>
 
 <body>
+    <?php
+    $msg = isset($_GET['msg']) ? $_GET['msg'] : "";
+
+    if ($msg == "uploaded") : ?>
+        <div class="alert alert-sucess alert-dismissible fade show" role="alert">
+            <strong>Yey!</strong> Individual added successfully!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <?php endif ?>
     <nav class="p-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center px-10 py-2">
             <a href="#" class="text-slate-500 text-xl hover:text-slate-900 "><i class="bi bi-sun"></i></a>
@@ -43,16 +65,16 @@ session_start();
                 </div>
                 <!-- Modal body -->
                 <div class="p-4 md:p-5">
-                    <form class="space-y-4" action="#">
+                    <form class="space-y-4" action="./models/addIndiv.php" method="post">
                         <div class="flex items-center justify-center w-full">
-                            <label class="flex flex-col rounded-lg border-4 border-dashed w-full h-60 p-10 group text-center">
+                            <label class="flex flex-col rounded-lg border-4 border-dashed w-full h-30 p-10 group text-center">
                                 <div class="h-full w-full text-center flex flex-col items-center justify-center items-center  ">
-                                    <div class="flex flex-auto max-h-48 w-2/5 mx-auto -mt-10">
+                                    <div class="flex flex-auto max-h-38 w-2/5 mx-auto -mt-10">
                                         <img class="has-mask h-36 object-center" src="https://img.freepik.com/free-vector/image-upload-concept-landing-page_52683-27130.jpg?size=338&ext=jpg" alt="freepik image">
                                     </div>
                                     <p class="pointer-none text-gray-500 "><span class="text-sm">Drag and drop</span> files here <br /> or <a href="" id="" class="text-blue-600 hover:underline">select a file</a> from your computer</p>
                                 </div>
-                                <input type="file" class="hidden">
+                                <input name="pfp" id="pfp" type="file" class="hidden">
                             </label>
                         </div>
                         <div>
@@ -60,8 +82,12 @@ session_start();
                             <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Give a name" required />
                         </div>
                         <div>
+                            <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                            <input type="text" name="title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Give a name" required />
+                        </div>
+                        <div>
                             <label for="desc" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                            <input type="text" name="desc" id="desc" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Give a short description" required />
+                            <textarea type="textarea" name="desc" id="desc" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" rows="5" cols="10" placeholder="Give a short description" required></textarea>
                         </div>
                         <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><i class="bi bi-person-plus"></i> Add</button>
                     </form>
