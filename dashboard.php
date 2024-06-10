@@ -104,8 +104,7 @@ session_start();
     $sql_prep->bind_param("i", $_SESSION['uid']);
     $sql_prep->execute();
     $res = $sql_prep->get_result();
-    $row = $res->fetch_assoc();
-    while ($row > 0) {
+    while ($row = $res->fetch_assoc()) {
     ?>
         <div class="flex flex-wrap items-start justify-start gap-10 px-24 py-10 " id="card-container">
             <div class="card flex flex-col items-center max-w-80 max-h-fit rounded-xl shadow-lg pb-6">
@@ -128,7 +127,7 @@ session_start();
                     </p>
                 </div>
                 <div class="navigation mt-3">
-                    <button class="bg-slate-800 rounded text-white text-sm px-5 py-2 hover:bg-slate-600">VIEW PROFILE</button>
+                    <a href="./views/viewProfile.php?id=<?= $row['indiv_id']; ?>" class="bg-slate-800 rounded text-white text-sm px-5 py-2 hover:bg-slate-600">VIEW PROFILE</a>
                 </div>
             </div>
         </div>
