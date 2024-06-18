@@ -12,10 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $sql_prep->execute();
         $result = $sql_prep->get_result();
         $row = $result->fetch_assoc();
+        $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
         if ($result->num_rows == 1) {
             if (password_verify($pass, $row['pass'])) {
                 $_SESSION['uid'] = $row['user_id'];
                 header("Location: ../dashboard.php");
+            } else {
+                echo "<h1>PASSWORD DOES NOT MATCH</h1>";
             }
         }
     } else {
