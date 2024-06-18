@@ -26,7 +26,7 @@ session_start();
     </style>
 </head>
 
-<body>
+<body class="bg-slate-200">
     <?php
     $msg = isset($_GET['msg']) ? $_GET['msg'] : "";
 
@@ -39,12 +39,12 @@ session_start();
         </div>
     <?php endif ?>
     <nav class="p-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center px-10 py-2">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-10 py-2 bg-slate-100 rounded-xl">
             <a href="#" class="text-slate-500 text-xl hover:text-slate-900 "><i class="bi bi-sun"></i></a>
             <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block font-medium rounded-lg text-sm px-5 py-2.5" type="button">
                 <i class="bi bi-plus-circle"></i>
             </button>
-            <a href="#" class="text-slate-500 text-xl hover:text-slate-900 "><i class="bi bi-list-nested"></i></a>
+            <a href="#" class="text-slate-500 text-xl hover:text-slate-900 "><i class="bi bi-arrow-right-circle"></i></a>
         </div>
     </nav>
     <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -127,7 +127,7 @@ session_start();
                     </p>
                 </div>
                 <div class="navigation mt-3">
-                    <a href="./views/viewProfile.php?id=<?= $row['indiv_id']; ?>" class="bg-slate-800 rounded text-white text-sm px-5 py-2 hover:bg-slate-600">VIEW PROFILE</a>
+                    <a href="./views/viewProfile.php?id=<?= $row['indiv_id']; ?>" class="bg-slate-800 rounded text-white text-sm px-5 py-2 hover:bg-slate-700">VIEW PROFILE</a>
                 </div>
             </div>
         </div>
