@@ -12,9 +12,9 @@
     <title>Login</title>
 </head>
 
-<body class="h-dvh flex items-center justify-center ">
+<body class="h-dvh flex items-center justify-center flex-wrap">
 
-    <div class=" flex items-center justify-center flex-col flex-1">
+    <div class=" flex items-center justify-center flex-col flex-1 min-w-60">
         <h1 class="text-2xl font-bold">LOGIN</h1>
         <p class="mt-1 text-lg font-medium">Talent Management System</p>
 
@@ -33,7 +33,7 @@
                 <button id="login-button" class="text-white w-full py-3 rounded-2xl" type="submit">Login Now</button>
             </form>
         </div>
-        <a class="mt-3" href="./views/register.php">Register Account</a>
+        <a class="mt-3 hover:text-sky-400" href="./views/register.php">Register Account</a>
 
         <p class="my-8 relative z-10 bg-white" id="or-text">or</p>
 

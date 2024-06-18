@@ -41,7 +41,7 @@ $row = $res->fetch_assoc();
     <title>Profile</title>
 </head>
 
-<body>
+<body class="bg-slate-200">
 
     <?php
     $msg = isset($_GET['msg']) ? $_GET['msg'] : "";
@@ -161,7 +161,7 @@ $row = $res->fetch_assoc();
     <!-- ========== START OF VIEW PROFILE ========== -->
     <div class="main-profile-container flex align-start justify-center min-h-dvh p-6" id="main-profile">
         <div class="flex align-start justify-center" id="profile">
-            <div class="bg-white w-4/5 h-4/5 rounded-lg p-12 mt-5">
+            <div class="bg-slate-100 w-4/5 h-4/5 rounded-lg p-12 mt-5">
                 <div id="profile-image ">
                     <img class="rounded-full w-40 mx-auto" src="./assets/images/person.png" alt="">
                     <p class="text-center"><?= $row['name']; ?></p>
@@ -174,7 +174,7 @@ $row = $res->fetch_assoc();
         </div>
 
         <div class=" p-5 flex flex-col align-start gap-8" id="profile-information">
-            <div class="bg-white w-min-full h-min-3/5 p-3 rounded-lg" id="skills-knowledge">
+            <div class="w-min-full h-min-3/5 p-3 rounded-lg bg-slate-100" id="skills-knowledge">
                 <div class="flex justify-between" id="skill-header">
                     <h3 class="block text-xl font-bold mt-1">Skills and Knowledge</h3>
                     <button type="button" class="px-5 py-2 rounded-md bg-black text-white font-bold text-md" onclick="openModal('skill-modal')">ADD SKILL</button>
@@ -204,7 +204,7 @@ $row = $res->fetch_assoc();
                 </div>
             </div>
 
-            <div class="bg-white w-min-full h-min-3/5 p-3 rounded-lg" id="feeback">
+            <div class="w-min-full h-min-3/5 p-3 rounded-lg bg-slate-100" id="feeback">
                 <div class="flex justify-between" id="feedback-header">
                     <h3 class="block text-xl font-bold mt-1">Feedback</h3>
                     <button type="button" class="px-5 py-2 rounded-md bg-black text-white font-bold" onclick="openModal('feedback-modal')"> GIVE FEEDBACK</button>
@@ -240,7 +240,6 @@ $row = $res->fetch_assoc();
         }
 
         function closeAlert(alertId) {
-
             document.getElementById(alertId).style.display = 'none';
 
         }
