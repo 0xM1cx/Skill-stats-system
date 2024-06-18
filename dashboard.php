@@ -65,7 +65,7 @@ session_start();
                 </div>
                 <!-- Modal body -->
                 <div class="p-4 md:p-5">
-                    <form class="space-y-4" action="./models/addIndiv.php" method="post">
+                    <form class="space-y-4" action="./models/addIndiv.php" method="post" enctype="multipart/form-data">
                         <div class="flex items-center justify-center w-full">
                             <label class="flex flex-col rounded-lg border-4 border-dashed w-full h-30 p-10 group text-center">
                                 <div class="h-full w-full text-center flex flex-col items-center justify-center items-center  ">
@@ -110,7 +110,7 @@ session_start();
             <div class="card flex flex-col items-center max-w-80 max-h-fit rounded-xl shadow-lg pb-6">
                 <div class="w-full bg-orange-200 rounded-t-xl py-3">
                     <div class="info flex flex-col items-center justify-center">
-                        <img class="rounded-full max-w-40 shadow-lg" src="./assets/images/person.png" alt="">
+                        <img class="rounded-full max-w-40 shadow-lg" src="./assets/images/pfps/<?= $row['pfp_path']; ?>" alt="">
                         <p class="font-bold text-2xl mt-2"><?php echo $row['name']; ?></p>
                         <p class=""><?php echo $row['title']; ?></p>
                     </div>
