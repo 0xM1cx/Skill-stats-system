@@ -29,7 +29,7 @@ $row = $res->fetch_assoc();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../assets/css/styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <style>
         #alert-border {
             position: fixed;
@@ -158,6 +158,11 @@ $row = $res->fetch_assoc();
             </div>
         </div>
     </div>
+
+    <div class="absolute top-0 left-0 m-10">
+        <button onclick="redirectToDashboard()" type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Go Back</button>
+    </div>
+
     <!-- ========== START OF VIEW PROFILE ========== -->
     <div class="main-profile-container flex align-start justify-center min-h-dvh p-6" id="main-profile">
         <div class="flex align-start justify-center" id="profile">
@@ -184,6 +189,7 @@ $row = $res->fetch_assoc();
                         <thead>
                             <th class="text-start text-slate-400" scope="col">Skill</th>
                             <th class="text-start text-slate-400" scope="col">Level</th>
+                            <th class="text-start text-slate-400" scope="col">Action</th>
                         </thead>
                         <tbody>
                             <?php
@@ -195,8 +201,16 @@ $row = $res->fetch_assoc();
                             while ($skillRow = $res->fetch_assoc()) {
                             ?>
                                 <tr>
-                                    <td class="pt-2"><?php echo $skillRow['skill']; ?></td>
-                                    <td class="pt-2"><i class="bi bi-record-circle"></i> <?= $skillRow['level']; ?></td>
+                                    <td class="pt-2"><?php echo htmlspecialchars($skillRow['skill']); ?></td>
+                                    <td class="pt-2"><i class="bi bi-record-circle"></i> <?= htmlspecialchars($skillRow['level']); ?></td>
+                                    <td class="pt-2">
+                                        <form method="POST" action="../models/deleteSkill.php">
+                                            <input type="hidden" name="skill_id" value="<?= $skillRow['skill_id']; ?>">
+                                            <button type="submit" class="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-700">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                             <?php } ?>
                         </tbody>
@@ -224,10 +238,7 @@ $row = $res->fetch_assoc();
                     <?php } ?>
                 </div>
             </div>
-
         </div>
-
-
     </div>
 
     <script>
@@ -242,6 +253,10 @@ $row = $res->fetch_assoc();
         function closeAlert(alertId) {
             document.getElementById(alertId).style.display = 'none';
 
+        }
+
+        function redirectToDashboard() {
+            window.location.href = '../dashboard.php';
         }
     </script>
 

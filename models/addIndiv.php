@@ -8,7 +8,6 @@ $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $uploadDir = "../assets/images/pfps/" . basename($_FILES['pfp']['name']);
 
 $ifUpload = 1;
-$fileExtension = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
 
 
