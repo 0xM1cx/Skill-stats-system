@@ -104,10 +104,10 @@ session_start();
                 <button type="submit" class="text-slate-500 text-xl hover:text-slate-900 focus:outline-none">
                     <i class="bi bi-arrow-right-circle"></i>
                 </button>
-                <div class="tooltip hidden text-sm text-gray-700 bg-white border border-gray-300 shadow-md py-1 px-3 rounded-md absolute top-full left-1/2 transform -translate-x-1/2 mt-2 z-10">
-                    Logout
-                </div>
             </form>
+            <div class="tooltip hidden text-sm text-gray-700 bg-white border border-gray-300 shadow-md py-1 px-3 rounded-md absolute top-full left-1/2 transform -translate-x-1/2 mt-2 z-10" id="tooltipContent">
+                Tooltip text
+            </div>
         </div>
     </nav>
 
@@ -285,15 +285,15 @@ session_start();
         }
 
 
-        const tooltipTrigger = document.querySelector('.relative');
-        const tooltip = tooltipTrigger.querySelector('.tooltip');
+        const tooltipTrigger = document.getElementById('tooltipTrigger');
+        const tooltipContent = document.getElementById('tooltipContent');
 
         tooltipTrigger.addEventListener('mouseenter', () => {
-            tooltip.classList.add('active');
+            tooltipContent.classList.add('active');
         });
 
         tooltipTrigger.addEventListener('mouseleave', () => {
-            tooltip.classList.remove('active');
+            tooltipContent.classList.remove('active');
         });
     </script>
 
