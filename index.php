@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +7,7 @@
     <link rel="stylesheet" href="./assets/css/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="./assets/images/favicon.ico">
 
     <title>Login</title>
 </head>
@@ -16,7 +16,7 @@
 
     <div class=" flex items-center justify-center flex-col flex-1 min-w-60">
         <h1 class="text-2xl font-bold">LOGIN</h1>
-        <p class="mt-1 text-lg font-medium">Talent Management System</p>
+        <p class="mt-1 text-lg font-medium">Skill Dashboard System</p>
 
         <div class="w-3/5 mt-4">
             <form class="flex flex-col items-center justify-center gap-4" action="./models/auth.php" method="POST">
@@ -34,20 +34,6 @@
             </form>
         </div>
         <a class="mt-3 hover:text-sky-400" href="./views/register.php">Register Account</a>
-
-        <p class="my-8 relative z-10 bg-white" id="or-text">or</p>
-
-        <div class="flex flex-col w-3/5 gap-4">
-            <div class="flex items-center justify-center gap-x-2 border border-slate-400 rounded-lg py-3 " role="button">
-                <img id="google-img" src="./assets/images/google.png" alt="Google Icon">
-                <p>Login with Google</p>
-            </div>
-
-            <div class="flex items-center justify-center gap-x-2 border border-slate-400 rounded-lg py-3">
-                <img id="facebook-img" src="./assets/images/facebook.png" alt="Facebook Icon">
-                <p>Login with Facebook</p>
-            </div>
-        </div>
     </div>
     <div id="hero" class="h-full flex-1">
 

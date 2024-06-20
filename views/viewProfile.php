@@ -29,7 +29,7 @@ $row = $res->fetch_assoc();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../assets/css/styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
     <style>
         #alert-border {
             position: fixed;
@@ -159,19 +159,22 @@ $row = $res->fetch_assoc();
         </div>
     </div>
 
-    <div class="absolute top-0 left-0 m-10">
+    <div class="fixed top-0 left-0 ml-10 mt-5 mb-5 mr-5">
         <button onclick="redirectToDashboard()" type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Go Back</button>
     </div>
 
     <!-- ========== START OF VIEW PROFILE ========== -->
-    <div class="main-profile-container flex  justify-center p-10" id="main-profile">
+    <div class="main-profile-container mt-5 flex  justify-center p-10" id="main-profile">
         <!-- PROFILE -->
         <div class="flex-shrink-0 w-1/4 " id="profile">
             <div class="bg-slate-100 w-full h-auto rounded-lg p-12 mt-5">
                 <div id="profile-image ">
-                    <img class="rounded-full w-40 mx-auto" src="./assets/images/person.png" alt="">
-                    <p class="text-center"><?= $row['name']; ?></p>
-                    <p class="text-center"><?= $row['title']; ?></p>
+                    <img class="rounded-full w-40 mx-auto" src="../assets/images/pfps/<?php echo isset($row['pfp_path']) && $row['pfp_path'] !== '' ? $row['pfp_path'] : 'person.png'; ?>" alt="person picture here">
+                    <br>
+                    <strong>
+                        <h2 class="text-center"><?= $row['name']; ?></h2>
+                    </strong>
+                    <p class="mt-2 text-center"><?= $row['title']; ?></p>
                 </div>
                 <div class="mt-8" id="short-description">
                     <p class="text-justify"><?= $row['bio']; ?></p>
@@ -233,9 +236,18 @@ $row = $res->fetch_assoc();
                     $fRes = $fPrep->get_result();
                     while ($fRow = $fRes->fetch_assoc()) {
                     ?>
-                        <div class="bg-neutral-200 rounded-lg w-3/4 px-3 py-2">
-                            <p><i class="bi bi-record-circle "></i> <?= $fRow['feedback']; ?></p>
+                        <div class="bg-neutral-200 rounded-lg w-3/4 px-3 py-2 flex items-center justify-between">
+                            <div>
+                                <p><i class="bi bi-record-circle"></i> <?= $fRow['feedback']; ?></p>
+                            </div>
+                            <form method="POST" action="../models/deleteFeedback.php">
+                                <input type="hidden" name="feedback_id" value="<?= $fRow['feedback_id']; ?>">
+                                <button type="submit" class="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-700">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
                         </div>
+
                     <?php } ?>
                 </div>
             </div>

@@ -13,6 +13,7 @@ session_start();
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <title>Dashboard</title>
+    <link rel="icon" type="image/png" href="./assets/images/favicon.ico">
 
 
     <style>
@@ -25,12 +26,31 @@ session_start();
         }
 
         .tooltip {
-            opacity: 0;
-            transition: opacity 0.2s ease;
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black;
+            z-index: 9999;
         }
 
-        .tooltip.active {
-            opacity: 1;
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 9999;
+            top: 100%;
+            left: 50%;
+            margin-left: -60px;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
         }
     </style>
 </head>
@@ -100,68 +120,75 @@ session_start();
             <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block font-medium rounded-lg text-sm px-5 py-2.5" type="button">
                 <i class="bi bi-plus-circle"></i> Add Individual
             </button>
+
             <form action="./controllers/logout.php" method="post">
-                <button type="submit" class="text-slate-500 text-xl hover:text-slate-900 focus:outline-none">
+                <span class="tooltiptext">Logout</span>
+                <button type="submit" class="tooltip text-slate-500 text-xl hover:text-slate-900 focus:outline-none">
                     <i class="bi bi-arrow-right-circle"></i>
                 </button>
             </form>
-            <div class="tooltip hidden text-sm text-gray-700 bg-white border border-gray-300 shadow-md py-1 px-3 rounded-md absolute top-full left-1/2 transform -translate-x-1/2 mt-2 z-10" id="tooltipContent">
-                Tooltip text
-            </div>
+
         </div>
     </nav>
 
 
     <!-- ========== Edit Modal ========== -->
-    <div id="editModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative p-4 w-full max-w-md max-h-full">
-            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Edit Individual <i class="bi bi-pencil"></i>
-                    </h3>
-                    <button type="button" onclick="closeModal()" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                </div>
-                <div class="p-4 md:p-5">
-                    <form id="editForm" class="space-y-4" action="./models/updateIndiv.php" method="post">
-                        <input type="hidden" name="indiv_id" id="editIndivId" value="">
-                        <div>
-                            <label for="editName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                            <input type="text" name="name" id="editName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Name" required>
-                        </div>
-                        <div>
-                            <label for="editTitle" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                            <input type="text" name="title" id="editTitle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Title" required>
-                        </div>
-                        <div>
-                            <label for="editBio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bio</label>
-                            <textarea name="bio" id="editBio" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" rows="5" placeholder="Bio" required></textarea>
-                        </div>
-                        <div class="flex justify-end">
-                            <button type="button" onclick="closeModal()" class="px-5 py-2 mr-2 bg-gray-500 text-white rounded-md hover:bg-gray-700">Cancel</button>
-                            <button type="submit" class="px-5 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700">Save</button>
-                        </div>
-                    </form>
-                </div>
+    <div id="editModal" tabindex="-1" aria-hidden="true" class="bg-opacity-70 bg-gray-900 hidden fixed inset-0 overflow-y-auto flex items-center justify-center z-50">
+        <div class="relative bg-white rounded-lg shadow w-full max-w-md">
+            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                <h3 class="text-xl font-semibold text-gray-900">
+                    Edit Individual <i class="bi bi-pencil"></i>
+                </h3>
+                <button type="button" onclick="closeModal()" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <div class="p-4 md:p-5">
+                <form id="editForm" class="space-y-4" action="./models/updateIndiv.php" method="post">
+                    <input type="hidden" name="indiv_id" id="editIndivId" value="">
+                    <div>
+                        <label for="editName" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
+                        <input type="text" name="name" id="editName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400" placeholder="Name">
+                    </div>
+                    <div>
+                        <label for="editTitle" class="block mb-2 text-sm font-medium text-gray-900">Title</label>
+                        <input type="text" name="title" id="editTitle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400" placeholder="Title">
+                    </div>
+                    <div>
+                        <label for="git_link" class="block mb-2 text-sm font-medium text-gray-900">Github Link</label>
+                        <input type="text" name="git_link" id="editgit_link" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400" placeholder="Github Link">
+                    </div>
+                    <div>
+                        <label for="fb_link" class="block mb-2 text-sm font-medium text-gray-900">Facebook Link</label>
+                        <input type="text" name="fb_link" id="editfb_link" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400" placeholder="Facebook Link">
+                    </div>
+                    <div>
+                        <label for="editBio" class="block mb-2 text-sm font-medium text-gray-900">Bio</label>
+                        <textarea name="bio" id="editBio" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400" rows="5" placeholder="Bio"></textarea>
+                    </div>
+                    <div class="flex justify-end mt-4">
+                        <button type="button" onclick="closeModal()" class="px-5 py-2 mr-2 bg-gray-500 text-white rounded-md hover:bg-gray-700">Cancel</button>
+                        <button type="submit" class="px-5 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700">Save</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+
 
 
     <!-- ========== ADD INDIVIDUAL MODEL ========== -->
     <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-md max-h-full">
             <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <div class="relative bg-white rounded-lg shadow ">
                 <!-- Modal header -->
-                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Add a individual <i class="bi bi-person-arms-up"></i>
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                    <h3 class="text-xl font-semibold text-gray-900 ">
+                        Add a Individual <i class="bi bi-person-arms-up"></i>
                     </h3>
                     <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="authentication-modal">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -185,16 +212,24 @@ session_start();
                             </label>
                         </div>
                         <div>
-                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                            <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Give a name" required />
+                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
+                            <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-white" placeholder="Give a name" required />
                         </div>
                         <div>
-                            <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                            <input type="text" name="title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Give a name" required />
+                            <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Title</label>
+                            <input type="text" name="title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-white" placeholder="Give a title" required />
                         </div>
                         <div>
-                            <label for="desc" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                            <textarea type="textarea" name="desc" id="desc" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" rows="5" cols="10" placeholder="Give a short description" required></textarea>
+                            <label for="git_link" class="block mb-2 text-sm font-medium text-gray-900">Github Link</label>
+                            <input type="text" name="git_link" id="git_link" class="bg-white-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400" placeholder="Give Github link" />
+                        </div>
+                        <div>
+                            <label for="fb_link" class="block mb-2 text-sm font-medium text-gray-900">Facebook Link</label>
+                            <input type="text" name="fb_link" id="fb_link" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-white" placeholder="Give Facebook link" />
+                        </div>
+                        <div>
+                            <label for="desc" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
+                            <textarea type="textarea" name="desc" id="desc" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-white" rows="5" cols="10" placeholder="Give a short description" required></textarea>
                         </div>
                         <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><i class="bi bi-person-plus"></i> Add</button>
                     </form>
@@ -202,6 +237,7 @@ session_start();
             </div>
         </div>
     </div>
+
 
     <?php
     $sql = "SELECT * FROM individuals WHERE user_id = ?";
@@ -216,7 +252,7 @@ session_start();
                 <div class="w-full sm:w-1/2 lg:w-1/4 p-5 relative">
                     <div class="card flex flex-col items-center max-w-full max-h-fit rounded-xl shadow-lg pb-6">
                         <div class="absolute top-0 left-0 mt-3 ml-3">
-                            <button type="button" class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-blue-700 edit-button" onclick="openEditModal(<?php echo $row['indiv_id']; ?>, '<?php echo htmlspecialchars($row['name']); ?>', '<?php echo htmlspecialchars($row['title']); ?>', '<?php echo htmlspecialchars($row['bio']); ?>')">
+                            <button type="button" class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-blue-700 edit-button" onclick="openEditModal(<?php echo $row['indiv_id']; ?>, '<?php echo htmlspecialchars($row['name']); ?>', '<?php echo htmlspecialchars($row['title']); ?>', '<?php echo htmlspecialchars($row['bio']); ?>', '<?php echo htmlspecialchars($row['git_link']); ?>', '<?php echo htmlspecialchars($row['fb_link']); ?>')">
                                 <i class="bi bi-pencil"></i>
                             </button>
 
@@ -235,11 +271,21 @@ session_start();
                                 <p class="font-bold text-2xl mt-2"><?php echo $row['name']; ?></p>
                                 <p class=""><?php echo $row['title']; ?></p>
                             </div>
-                            <div class="socials flex items-center justify-center gap-4 mt-5">
-                                <i class="bi bi-github text-xl"></i>
-                                <i class="bi bi-facebook text-xl"></i>
-                                <i class="bi bi-gitlab text-xl"></i>
-                                <i class="bi bi-twitter text-xl"></i>
+                            <div class="socials flex items-center justify-center gap-2 mt-3">
+                                <?php if (!empty($row['git_link'])) { ?>
+                                    <a href="<?php echo $row['git_link']; ?>">
+                                        <i class="bi bi-github text-xl"></i>
+                                    </a>
+                                <?php } else { ?>
+                                    <i class="invisible bi bi-github text-xl"></i>
+                                <?php } ?>
+                                <?php if (!empty($row['fb_link'])) { ?>
+                                    <a href="<?php echo $row['fb_link']; ?>">
+                                        <i class="bi bi-facebook text-xl"></i>
+                                    </a>
+                                <?php } else { ?>
+                                    <i class="invisible bi bi-facebook text-xl"></i>
+                                <?php } ?>
                             </div>
                         </div>
                         <div class="descriptions w-full min-h-32 mt-5 px-5">
@@ -264,7 +310,7 @@ session_start();
         });
 
 
-        function openEditModal(id, name, title, bio) {
+        function openEditModal(id, name, title, bio, gitlink, fblink) {
             var modal = document.getElementById('editModal');
             var editForm = modal.querySelector('#editForm');
 
@@ -272,6 +318,8 @@ session_start();
             editForm.querySelector('#editName').value = name;
             editForm.querySelector('#editTitle').value = title;
             editForm.querySelector('#editBio').value = bio;
+            editForm.querySelector('#editgit_link').value = gitlink;
+            editForm.querySelector('#editfb_link').value = fblink;
 
             modal.classList.remove('hidden');
         }
