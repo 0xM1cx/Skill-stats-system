@@ -37,6 +37,17 @@ $row = $res->fetch_assoc();
             right: 10px;
             z-index: 9999;
         }
+
+        .vpButton {
+            background: linear-gradient(to right, #9181F4, #5038ED);
+            background: -webkit-linear-gradient(to right, #9181F4, #5038ED);
+            background-color: #5038ED;
+            transition: background-color 500ms ease-in;
+        }
+
+        .vpButton:hover {
+            background: #5038ED;
+        }
     </style>
     <title>Profile</title>
 </head>
@@ -120,7 +131,7 @@ $row = $res->fetch_assoc();
                                 <option value="Master">Master</option>
                             </select>
                         </div>
-                        <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><i class="bi bi-person-plus"></i> Add</button>
+                        <button type="submit" class="vpButton w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><i class="bi bi-person-plus"></i> Add</button>
                     </form>
                 </div>
             </div>
@@ -152,7 +163,7 @@ $row = $res->fetch_assoc();
                             <textarea cols="30" rows="10" type="text" id="feedback" name="feedback" class="block w-full p-4 text-gray-900 border rounded-lg bg-gray-50 text-base"></textarea>
                             <input type="hidden" name="indiv_id" value="<?= $row['indiv_id']; ?>">
                         </div>
-                        <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><i class="bi bi-person-plus"></i> Add</button>
+                        <button type="submit" class="vpButtonw-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><i class="bi bi-person-plus"></i> Add</button>
                     </form>
                 </div>
             </div>
@@ -160,7 +171,7 @@ $row = $res->fetch_assoc();
     </div>
 
     <div class="fixed top-0 left-0 ml-10 mt-5 mb-5 mr-5">
-        <button onclick="redirectToDashboard()" type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Go Back</button>
+        <button onclick="redirectToDashboard()" type="button" class="vpButton text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Go Back</button>
     </div>
 
     <!-- ========== START OF VIEW PROFILE ========== -->
@@ -186,7 +197,7 @@ $row = $res->fetch_assoc();
             <div class="w-min-full h-min-3/5 p-3 rounded-lg bg-slate-100" id="skills-knowledge">
                 <div class="flex justify-between" id="skill-header">
                     <h3 class="block text-xl font-bold mt-1">Skills and Knowledge</h3>
-                    <button type="button" class="px-5 py-2 rounded-md bg-black text-white font-bold text-md" onclick="openModal('skill-modal')">ADD SKILL</button>
+                    <button type="button" class="vpButton px-5 py-2 rounded-md bg-black text-white font-bold text-md" onclick="openModal('skill-modal')">ADD SKILL</button>
                 </div>
                 <div>
                     <table class="table table-fixed w-full">
@@ -210,7 +221,7 @@ $row = $res->fetch_assoc();
                                     <td class="pt-2">
                                         <form method="POST" action="../models/deleteSkill.php">
                                             <input type="hidden" name="skill_id" value="<?= $skillRow['skill_id']; ?>">
-                                            <button type="submit" class="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-700">
+                                            <button type="submit" class="vpButton bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-700">
                                                 <i class="bi bi-trash"></i>
                                             </button>
                                         </form>
@@ -225,7 +236,7 @@ $row = $res->fetch_assoc();
             <div class="w-min-full h-min-3/5 p-3 rounded-lg bg-slate-100" id="feeback">
                 <div class="flex justify-between" id="feedback-header">
                     <h3 class="block text-xl font-bold mt-1">Feedback</h3>
-                    <button type="button" class="px-5 py-2 rounded-md bg-black text-white font-bold" onclick="openModal('feedback-modal')"> GIVE FEEDBACK</button>
+                    <button type="button" class="vpButton px-5 py-2 rounded-md bg-black text-white font-bold" onclick="openModal('feedback-modal')"> GIVE FEEDBACK</button>
                 </div>
                 <div class="flex flex-col align-start gap-5 mt-3" id="feedback-content">
                     <?php
@@ -242,7 +253,7 @@ $row = $res->fetch_assoc();
                             </div>
                             <form method="POST" action="../models/deleteFeedback.php">
                                 <input type="hidden" name="feedback_id" value="<?= $fRow['feedback_id']; ?>">
-                                <button type="submit" class="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-700">
+                                <button type="submit" class="vpButton bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-700">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </form>
