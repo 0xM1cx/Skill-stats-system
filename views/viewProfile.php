@@ -164,20 +164,21 @@ $row = $res->fetch_assoc();
     </div>
 
     <!-- ========== START OF VIEW PROFILE ========== -->
-    <div class="main-profile-container flex align-start justify-center min-h-dvh p-6" id="main-profile">
-        <div class="flex align-start justify-center" id="profile">
-            <div class="bg-slate-100 w-4/5 h-4/5 rounded-lg p-12 mt-5">
+    <div class="main-profile-container flex  justify-center p-10" id="main-profile">
+        <!-- PROFILE -->
+        <div class="flex-shrink-0 w-1/4 " id="profile">
+            <div class="bg-slate-100 w-full h-auto rounded-lg p-12 mt-5">
                 <div id="profile-image ">
                     <img class="rounded-full w-40 mx-auto" src="./assets/images/person.png" alt="">
                     <p class="text-center"><?= $row['name']; ?></p>
                     <p class="text-center"><?= $row['title']; ?></p>
                 </div>
                 <div class="mt-8" id="short-description">
-                    <p class="text-center"><?= $row['bio']; ?></p>
+                    <p class="text-justify"><?= $row['bio']; ?></p>
                 </div>
             </div>
         </div>
-
+        <!-- SKILL -->
         <div class=" p-5 flex flex-col align-start gap-8" id="profile-information">
             <div class="w-min-full h-min-3/5 p-3 rounded-lg bg-slate-100" id="skills-knowledge">
                 <div class="flex justify-between" id="skill-header">
