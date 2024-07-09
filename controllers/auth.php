@@ -23,7 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                     $_SESSION['loggedin'] = TRUE;
                     $_SESSION['name'] = $name;
                     $_SESSION['id'] = $user_id;
-                    header('Location: /index.php');
+                    header('Location: /dashboard.php');
+                }else{
+
                 }
             }
             $query->close();

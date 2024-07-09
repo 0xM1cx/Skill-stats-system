@@ -225,23 +225,23 @@ session_start();
                         </div>
                         <div>
                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
-                            <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-white" placeholder="Give a name" required />
+                            <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Give a name" required />
                         </div>
                         <div>
                             <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Title</label>
-                            <input type="text" name="title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-white" placeholder="Give a title" required />
+                            <input type="text" name="title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Give a title" required />
                         </div>
                         <div>
                             <label for="git_link" class="block mb-2 text-sm font-medium text-gray-900">Github Link</label>
-                            <input type="text" name="git_link" id="git_link" class="bg-white-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400" placeholder="Give Github link" />
+                            <input type="text" name="git_link" id="git_link" class="bg-white-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Give Github link" />
                         </div>
                         <div>
                             <label for="fb_link" class="block mb-2 text-sm font-medium text-gray-900">Facebook Link</label>
-                            <input type="text" name="fb_link" id="fb_link" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-white" placeholder="Give Facebook link" />
+                            <input type="text" name="fb_link" id="fb_link" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Give Facebook link" />
                         </div>
                         <div>
                             <label for="desc" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
-                            <textarea type="textarea" name="desc" id="desc" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:placeholder-gray-400 dark:text-white" rows="5" cols="10" placeholder="Give a short description" required></textarea>
+                            <textarea type="textarea" name="desc" id="desc" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" rows="5" cols="10" placeholder="Give a short description" required></textarea>
                         </div>
                         <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><i class="bi bi-person-plus"></i> Add</button>
                     </form>

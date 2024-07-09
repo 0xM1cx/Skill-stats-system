@@ -20,6 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             } else {
                 echo "<h1>PASSWORD DOES NOT MATCH</h1>";
             }
+        }else{
+            header("Location: ../index.php");
         }
     } else {
         echo "<h1>NOT SET</h1>";

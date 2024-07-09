@@ -11,14 +11,9 @@ $fb_link = filter_input(INPUT_POST, 'fb_link', FILTER_SANITIZE_FULL_SPECIAL_CHAR
 
 $ifUpload = 1;
 
-
-
-
-
-
 $sql = "INSERT INTO individuals(name, title, bio, user_id, pfp_path, git_link, fb_link) VALUES (?, ?, ?, ?, ?, ?, ?);";
 $sql_prep = $conn->prepare($sql);
-$sql_prep->bind_param("sssis", $indivName, $title, $description, $_SESSION['uid'], $_FILES['pfp']['name'], $git_link, $fb_link);
+$sql_prep->bind_param("sssisss", $indivName, $title, $description, $_SESSION['uid'], $_FILES['pfp']['name'], $git_link, $fb_link);
 $sql_prep->execute();
 
 
